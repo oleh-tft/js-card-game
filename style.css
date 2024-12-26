@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: blanchedalmond;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+button {
+    padding: 0.2rem 2rem;
+}
+
+hr {
+    margin: 2rem 0;
+}
+
+#content {
+    width: 800px;
+    margin: auto;
+}
+
+#head {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: auto;
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.card {
+    background-color: aliceblue;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    width: 140px;
+    height: 180px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+}
+
+.circle {
+    background-image: url(assets/circle.svg);
+}
+
+.heart {
+    background-image: url(assets/heart.svg);
+}
+
+.hexagon {
+    background-image: url(assets/hexagon.svg);
+}
+
+.square {
+    background-image: url(assets/square.svg);
+}
+
+.star {
+    background-image: url(assets/star.svg);
+}
+
+.back {
+    background: url(assets/bg.jfif);
+}
