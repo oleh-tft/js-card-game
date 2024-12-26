@@ -7,6 +7,66 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="cards.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            function start() {
+                shuffle(shapes);
+                $(".card-first").each(function(i) {
+                    $(this).addClass(`${shapes[i]}`);
+                });
+                shuffle(shapes);
+                $(".card-second").each(function(i) {
+                    $(this).addClass(`${shapes[i]}`);
+                });
+            }
+
+            start();
+
+            $("#btn-start").click(function() {
+                started = !started;
+                if (started) {
+                    $(this).text("FINISH");
+                    $(".back").animate({opacity: 1}, 500);
+                } else {
+                    $(".back").animate({opacity: 0}, 500);
+                    $(".card").removeClass("guessed");
+                    $(this).text("START");
+                    toOpen = 10;
+                    currentlyOpen = 0;
+                    clicked = [];
+                    $("#modal").css("display", "none");
+                }
+            });
+
+            $(".card").click(function() {
+                if (!started) return;
+                if (currentlyOpen < 2 && !$(this).hasClass("guessed") && !clicked.includes($(this).index())) {
+                    $(this).children().animate({opacity: 0}, 100);
+                    currentlyOpen++;
+                    clicked.push($(this).index());
+                }
+                if (currentlyOpen == 2) {
+                    let card1 = $(".card").eq(clicked[0]).attr("class").split(/\s+/)[2];
+                    let card2 = $(".card").eq(clicked[1]).attr("class").split(/\s+/)[2];
+                    if (card1 != card2) {
+                        $(".card").eq(clicked[0]).children().delay(500).animate({opacity: 1}, 1000);
+                        $(".card").eq(clicked[1]).children().delay(500).animate({opacity: 1}, 1000);
+                    } else {
+                        $(".card").eq(clicked[0]).addClass("guessed");
+                        $(".card").eq(clicked[1]).addClass("guessed");
+                        toOpen -= 2;
+                    }
+                    currentlyOpen = 0;
+                    clicked = [];
+                }
+                if (toOpen == 0) {
+                    $("#modal").css("display", "block");
+                    $("#btn-start").text("START");
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     <main id="content">
@@ -15,17 +75,18 @@
             <button type="button" id="btn-start">START</button>
         </div>
         <hr>
+        <div id="modal">Congrats! You've won!</div>
         <div id="cards">
-            <div class="card card-first"></div>
-            <div class="card card-first"></div>
-            <div class="card card-first"></div>
-            <div class="card card-first"></div>
-            <div class="card card-first"></div>
-            <div class="card card-second"></div>
-            <div class="card card-second"></div>
-            <div class="card card-second"></div>
-            <div class="card card-second"></div>
-            <div class="card card-second"></div>
+            <div class="card card-first"><div class="back"></div></div>
+            <div class="card card-first"><div class="back"></div></div>
+            <div class="card card-first"><div class="back"></div></div>
+            <div class="card card-first"><div class="back"></div></div>
+            <div class="card card-first"><div class="back"></div></div>
+            <div class="card card-second"><div class="back"></div></div>
+            <div class="card card-second"><div class="back"></div></div>
+            <div class="card card-second"><div class="back"></div></div>
+            <div class="card card-second"><div class="back"></div></div>
+            <div class="card card-second"><div class="back"></div></div>
         </div>
     </main>
 </body>

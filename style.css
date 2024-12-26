@@ -69,4 +69,26 @@ hr {
 
 .back {
     background: url(assets/bg.jfif);
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.guessed {
+    opacity: 0.5;
+    cursor: default;
+}
+#modal {
+    position: absolute;
+    left: 50%;
+    top: 270px;
+    transform: translate(-50%, 0);
+    display: none;
+    background-color: rgb(190, 14, 14);
+    border-radius: 14px;
+    color: white;
+    padding: 1.6rem;
+    z-index: 1;
+    cursor: default;
 }
